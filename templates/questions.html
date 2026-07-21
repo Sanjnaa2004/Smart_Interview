@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Questions — Smart Interview</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container form-box">
+  <div class="brand-badge">📚 Practice Questions</div>
+  <h2>Mock Interview Questions</h2>
+  <p>Select a role to see practice questions</p>
+
+  <form method="POST">
+    <select name="role" required>
+      <option value="">— Select Role —</option>
+      <option>Python Developer</option>
+      <option>Data Analyst</option>
+      <option>Java Developer</option>
+      <option>HR Round</option>
+      <option>AI/ML Developer</option>
+      <option>Data Science Engineer</option>
+    </select>
+    <button type="submit">Get Questions 📋</button>
+  </form>
+
+  {% if selected_role %}
+  <div class="divider"></div>
+  <h3>Role: {{ selected_role }}</h3>
+  <div class="question-list">
+    {% for q in questions %}
+    <p>{{ loop.index }}. {{ q }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="divider"></div>
+  <button type="button" onclick="window.location.href='/questions'" class="btn btn-secondary">🔄 New Search</button>
+  <button type="button" onclick="window.location.href='/dashboard'" class="btn btn-ghost">← Back to Dashboard</button>
+</div>
+</body>
+</html>

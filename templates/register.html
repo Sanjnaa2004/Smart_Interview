@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — Smart Interview</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container auth-box">
+  <div class="brand-badge">✦ Create Account</div>
+  <h2>Join Smart Interview</h2>
+  <p>Start preparing for your dream job today</p>
+
+  <form method="POST">
+    <input type="text" name="name" placeholder="Your full name" required>
+    <input type="email" name="email" placeholder="Your email address" required>
+    <input type="password" name="password" placeholder="Choose a password" required>
+    <button type="submit" class="btn btn-success">Create My Account 🚀</button>
+  </form>
+
+  <div class="divider"></div>
+
+  <p class="link-text">
+    Already have an account?
+    <button type="button" class="btn btn-ghost" onclick="window.location.href='/login'">Login</button>
+  </p>
+</div>
+</body>
+</html>

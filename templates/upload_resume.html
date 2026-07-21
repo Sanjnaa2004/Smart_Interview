@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Resume — Smart Interview</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <div class="brand-badge">📄 Resume Analyzer</div>
+  <h2>Upload Your Resume</h2>
+  <p>We'll analyze your resume and give you an ATS score</p>
+
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="resume" required>
+    <button type="submit">Analyze My Resume ✨</button>
+  </form>
+
+  {% if msg %}
+  <div class="divider"></div>
+  <div class="question-box">
+    <h3>{{ msg }}</h3>
+    <div class="score">{{ score }}<span style="font-size:1.2rem;opacity:0.5">/100</span></div>
+    <div class="score-label">ATS RESUME SCORE</div>
+  </div>
+  {% endif %}
+
+  <div class="divider"></div>
+  <button type="button" class="btn btn-ghost" onclick="window.location.href='/dashboard'">← Back to Dashboard</button>
+</div>
+</body>
+</html>

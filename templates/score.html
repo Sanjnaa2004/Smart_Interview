@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Score — Smart Interview</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <div class="brand-badge">📊 Score Report</div>
+  <h2>Your Resume Score</h2>
+  <p>Here's how your resume performed on our ATS analyzer</p>
+
+  <div class="question-box" style="text-align:center;">
+    <div class="score">{{ score }}<span style="font-size:1.2rem;opacity:0.5">/100</span></div>
+    <div class="score-label">ATS RESUME SCORE</div>
+    <p style="margin-top:14px;margin-bottom:0;color:#86efac;font-weight:600;">Good Resume 👍</p>
+  </div>
+
+  <div class="divider"></div>
+  <button type="button" class="btn btn-ghost" onclick="window.location.href='/dashboard'">← Back to Dashboard</button>
+</div>
+</body>
+</html>

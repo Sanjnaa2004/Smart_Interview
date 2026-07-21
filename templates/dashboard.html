@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Smart Interview</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <div class="brand-badge">👤 Dashboard</div>
+  <h1>Welcome, {{ name }} 👋</h1>
+  <p>Choose your interview preparation option below</p>
+  <div class="divider"></div>
+  <button type="button" onclick="window.location.href='/resume'">
+    📄 Upload Resume
+  </button>
+  <button type="button" onclick="window.location.href='/mock_interview'">
+    🎯 Mock Interview
+  </button>
+  <button type="button" onclick="window.location.href='/score'" class="btn btn-success">
+    📊 View Score
+  </button>
+  <button type="button" onclick="window.location.href='/logout'" class="btn btn-danger">
+    🚪 Logout
+  </button>
+</div>
+</body>
+</html>

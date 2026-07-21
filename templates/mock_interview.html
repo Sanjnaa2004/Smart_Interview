@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Interview — Smart Interview</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <div class="brand-badge">🎯 Mock Interview</div>
+  <h2>Mock Interview</h2>
+  <p>Select your job role and start your personalized interview</p>
+
+  <form method="POST">
+    <select name="role" required>
+      <option value="">— Select Job Role —</option>
+      {% for r in roles %}
+      <option value="{{ r }}" {% if role == r %}selected{% endif %}>{{ r }}</option>
+      {% endfor %}
+    </select>
+
+    <button type="submit">🚀 Start Interview</button>
+
+    {% if question %}
+    <div class="divider"></div>
+    <div class="question-box">
+      <b>Question:</b><br><br>{{ question }}
+    </div>
+
+    <textarea name="answer" id="answerBox" placeholder="Type your answer here or use the mic below...">{{ user_answer }}</textarea>
+
+    <button type="button" onclick="startVoice()" class="btn btn-secondary" style="background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.4);color:#a5b4fc;">
+      🎤 Voice Answer
+    </button>
+    <button type="submit">✅ Submit Answer</button>
+    <button type="submit" name="action" value="next" class="btn btn-ghost">➡ Next Question</button>
+    {% endif %}
+  </form>
+
+  <div id="micStatus">🎤 Mic OFF</div>
+
+  {% if result %}
+  <div class="divider"></div>
+  <div class="result">{{ result }}</div>
+  <div class="score" style="font-size:2.5rem;">{{ score }}<span style="font-size:1rem;opacity:0.5">/10</span></div>
+  <div class="score-label">ANSWER SCORE</div>
+  {% endif %}
+
+  <div class="divider"></div>
+  <button type="button" class="btn btn-ghost" onclick="window.location.href='/dashboard'">← Back to Dashboard</button>
+</div>
+
+<script>
+function startVoice() {
+  const status = document.getElementById("micStatus");
+  status.innerHTML = "🎤 Mic ON — Listening...";
+  status.style.color = "#86efac";
+
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "en-US";
+  recognition.start();
+
+  recognition.onresult = function(event) {
+    document.getElementById("answerBox").value = event.results[0][0].transcript;
+  };
+  recognition.onerror = function() {
+    status.innerHTML = "❌ Mic Error";
+    status.style.color = "#fca5a5";
+  };
+  recognition.onend = function() {
+    status.innerHTML = "🎤 Mic OFF";
+    status.style.color = "";
+  };
+}
+</script>
+</body>
+</html>
